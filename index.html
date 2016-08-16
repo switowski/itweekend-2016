@@ -42,16 +42,17 @@
                         <h1>Writing faster code</h1>
                         <aside class="notes">
                             Hi everyone.<br>
-                            I would like to talk with you about writing faster code. Last time I gave a short talk on how to make your Python code faster, I remember someone pointing out that 'basically you can rewrite your code in C to make it faster'.<br>
+                            I would like to talk with you about writing faster code. I remember the first time I was talking about making code faster - it was during some lightning talks, so it had to be very short and I asked the audience what is in their opinion the best way to make Python code faster.<br>
+                            And there was this one guy there - you know this type of an old school programmer that doesn't believe in Agile or TDD - who said "Well, rewrite your code in C".<br>
                             And you know what ? The guy was absolutely right. Take any piece of Python code, rewrite it in C or C++ and it will probably be faster.<br>
-                            So I was thinking, "Hmm, if I say just 'writing faster code', people will be confused if it's only about Python or not".<br>
-                            So I had to fix it.<br>
+                            So I decided that the only way to prevent this kind of mistakes is to have a very clear title of the presentation.<br>
                         </aside>
                     </section>
                     <section>
                         <h2>Writing faster code <span class='orange'>and not hating your job as a software developer</span></h2>
                         <aside class="notes">
-                            I was very happy with the new title. It makes it clear that we are not gonna talk about Java or C today.<br>
+                            I changed the title of my presentation.<br>
+                            And I was very happy with the new title. It makes it clear that we are not gonna talk about C or C++ today.<br>
                             But then I realized that this title is too long, I mean even though it's very clear, it barely even fits on the slide.<br>
                             So I had to change it again.<br>
                         </aside>
@@ -60,10 +61,55 @@
                         <h1 class="mb150">Writing faster <span class='orange'>Python</span></h1>
                         <p class="source-link"><a href="https://github.com/switowski">@SebaWitowski</a></p>
                         <aside class="notes">
-                            So I got the version that means the same thing but is shorter.<br>
-                            And this is how I ended up with 'Writing faster Python' as a title for my today's talk.<br>
+                            And I got the version that means exactly the same thing but is shorter.<br>
+                            So this is how I came up with the title for my today's talk.<br>
                             Let's put aside the flame war about which programming language is better.<br>
-                            (Whisper) We all know the answer, that's why you are here!(/Whisper)
+                            (Whisper) We all know the answer, that's why you guys are on this track :)(/Whisper)
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h4 class="source-link" style='font-size:1.2em; margin-top:150px'>Sebastian Witowski</h4>
+                        <div>
+                            <img class="no-borders" style="height:150px;width:150px;" src="./img/cern_logo.png">
+                        </div>
+                        <aside class="notes">
+                            So first of all, who am I and why do I care about faster Python ?<br>
+                            My name is Sebastian Witowski and I work at CERN.<br>
+                            And I'm lucky enough to be working at CERN during a very interesting period of time.<br>
+                            You see, for many years, scientists have been using a programming language called R.<br>
+                            It's a programming language mostly designed for statistical computing.<br>
+                        </aside>
+                    </section>
+                    <section>
+                        <pre style='width:1100px;'>
+                            <code class='R' style='max-height:600px;max-width:1100px;' data-trim data-noescape>
+install.packages("caTools")
+library(caTools)
+jet.colors <- colorRampPalette(c("green", "blue", "red",
+                                 "cyan", "#7FFF7F",
+                                 "yellow", "#FF7F00",
+                                 "red", "#7F0000"))
+m <- 1000
+C <- complex( real=rep(seq(-2.10,0.8, length.out=m), each=m ),
+              imag=rep(seq(-1.2,1.2, length.out=m), m ) )
+C <- matrix(C,m,m)
+Z <- 0
+X <- array(0, c(m,m,20))
+for (k in 1:20) {
+  Z <- Z^2+C
+  X[,,k] <- exp(-abs(Z))
+}
+write.gif(X, "Mandelbrot.gif", col=jet.colors, delay=900)
+                            </code>
+                        </pre>
+                        <aside class="notes">
+                            R might not be the most beautiful language<br>
+                            My name is Sebastian and I work at CERN.<br>
+                            And I'm lucky enough to be working at CERN during a very interesting period of time.<br>
+                            You see, for many years, scientists have been using a programming language called R.<br>
+                            It's a programming language mostly designed for statistical computing.<br>
                         </aside>
                     </section>
                 </section>
@@ -1057,16 +1103,6 @@ def squares_faster(MILLION_NUMBERS):
                         If you write idiomatic code and don't reinvent the wheel but use the existing functions and data structures, then you are already good.<br>
                         So be curious when your are coding.<br>
                         If you think that a different code structure will be faster, you can quickly check it with timeit and improve it.
-                    </aside>
-                </section>
-                <section>
-                    <h4 class="source-link" style='font-size:1.2em; margin-top:150px'>Sebastian Witowski</h4>
-                    <div>
-                        <img class="no-borders" style="height:150px;width:150px;" src="./img/cern_logo.png">
-                    </div>
-                    <aside class="notes">
-                        All right, my name is Sebastian Witowski, I work at CERN, so if you want to talk with my about physics, then you are probably on a wrong conference.<br>
-                        But if you want to talk about Python, you can catch me somewhere in the corridor.<br>
                     </aside>
                 </section>
                 <section>

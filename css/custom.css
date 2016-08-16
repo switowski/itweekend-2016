@@ -12,6 +12,11 @@
   /*Bigger font for code */
   font-size: 0.8em;
 }
+.reveal pre code.small-code {
+  /*Smaller code font */
+  font-size: 0.6em;
+}
+
 .reveal .arrow {
   font-size: 80px;
 }
