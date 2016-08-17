@@ -42,16 +42,16 @@
                         <h1>Writing faster code</h1>
                         <aside class="notes">
                             Hi everyone.<br>
-                            I would like to talk with you about writing faster code. I remember the first time I was talking about making code faster - it was during some lightning talks, so it had to be very short and I asked the audience what is in their opinion the best way to make Python code faster.<br>
+                            I would like to talk with you about writing faster code. I remember the first time I was talking about making code faster - it was during some lightning talks, and I asked the audience what is in their opinion the best way to make Python code faster.<br>
                             And there was this one guy there - you know this type of an old school programmer that doesn't believe in Agile or TDD - who said "Well, rewrite your code in C".<br>
-                            And you know what ? The guy was absolutely right. Take any piece of Python code, rewrite it in C or C++ and it will probably be faster.<br>
-                            So I decided that the only way to prevent this kind of mistakes is to have a very clear title of the presentation.<br>
+                            And you know what? The guy was absolutely right. Take any piece of Python code, rewrite it in C or C++ and it will probably be faster.<br>
+                            I decided that the only way to prevent this kind of mistakes is to have a very clear title of the presentation.<br>
                         </aside>
                     </section>
                     <section>
                         <h2>Writing faster code <span class='orange'>and not hating your job as a software developer</span></h2>
                         <aside class="notes">
-                            I changed the title of my presentation.<br>
+                            So I changed the title of my presentation to avoid any misunderstandings.<br>
                             And I was very happy with the new title. It makes it clear that we are not gonna talk about C or C++ today.<br>
                             But then I realized that this title is too long, I mean even though it's very clear, it barely even fits on the slide.<br>
                             So I had to change it again.<br>
@@ -75,15 +75,15 @@
                             <img class="no-borders" style="height:200px;width:200px;" src="./img/cern_logo.png">
                         </div>
                         <aside class="notes">
-                            So first of all, who am I and why do I care about faster Python ?<br>
+                            First of all, who am I and why do I care about faster Python ?<br>
                             My name is Sebastian Witowski and I work at CERN.<br>
                             And I'm lucky enough to be working at CERN during a very interesting period of time.<br>
                             You see, for many years, scientists have been using a programming language called R.<br>
-                            It's a programming language mostly designed for statistical computing.<br>
+                            It's a language mostly designed for statistical computing.<br>
                         </aside>
                     </section>
                     <section style='width:1100px; left:-60px;'>
-                        <pre style='width:100%;height:620px;'><code class='R' style='min-height:100%;' data-trim data-noescape>
+                        <pre style='width:100%;height:650px;'><code class='R' style='min-height:100%;' data-trim data-noescape>
 # https://en.wikipedia.org/wiki/R_(programming_language)
 install.packages("caTools")
 library(caTools)
@@ -105,21 +105,49 @@ write.gif(X, "Mandelbrot.gif", col=jet.colors, delay=900)
                             </code></pre>
                         <aside class="notes">
                             As you can see, R is probably not the most beautiful language<br>
-                            But it's fine, if you want to visualize some data, you write a script, display a plot and you are done.<br>
+                            But it's fine. If you want to visualize some data, you write a script, display a plot, paste it in your paper and you are done.<br>
                             Well, it was fine until some people discovered that since they know the basics of R, they can use it to write scripts to manipulate some data or do other tasks.<br>
-                            So scientists - people very often with absolutely no background in programming - were writing simple scripts in R.<br>
-                            And as it happens with all the "temporary scripts" - they were passed down from one generation of scientists to another.<br>
-                            And by generation - I mean, everyone couple of months there was a new person coming and adding new lines to that script.<br>
-                            It's like those Perl scripts for some administrative tasks that are stored in the miscellaneous folder and no one has any idea who wrote them in the first place.<br>
-                            As long as they work it's fine, but when they break, you usually need to rewrite most of it.<br>
-                            So scientists started to look for alternatives and for many years there was no easy replacement.
                         </aside>
                     </section>
                     <section>
+                        <h3>Small scripts...</h3>
+                        <pre><code class='R' data-trim data-noescape>
+# Fibonacci sequence (from rosettacode)
+
+recfibo <- function(n) {
+  if ( n < 2 ) n
+  else Recall(n-1) + Recall(n-2)
+}
+
+# Print the first 21 elements
+print.table(lapply(0:20, recfibo))
+                        </code></pre>
                         <aside class="notes">
-                            Fortunately, at some point the IPython happened, together with the amazing IPython notebooks.<br>
-                            It allowed for super easy visualizations, directly in the browser and Python was definitely as easier to learn language that R.<br>
-                            So since last 2 or 3 years I have observed that many scientists moved from R or other "interesting" programming languages to Python.<br>
+                            So scientists - people very often with absolutely no background in programming - started writing simple scripts in R.<br>
+                            And as it happens with all the "temporary scripts" - they were passed down from one generation of scientists to another.<br>
+                            So every now and then, someone added a couple lines of code to that script.<br>
+                        </aside>
+                    </section>
+                    <section data-background-image="./img/big-script.png">
+                        <h1>...will grow</h1>
+                        <aside class="notes">
+                            And suddenly small scripts became big scripts.<br>
+                            It's like those Perl scripts for some administrative tasks that are stored in the miscellaneous folder and no one has any idea who wrote them in the first place.<br>
+                            If you don't those scripts in a clean, idiomatic way from the beginning, then at some point they are doomed.<br>
+                            As long as they work it's fine, but when if something breaks, you usually need to rewrite it.<br>
+                            So scientists started to look for alternatives - an easy to use language that provides simple tools for data analysis, but can also be used for any other tasks.<br>
+                            And for many years there was no easy replacement.
+                        </aside>
+                    </section>
+                    <section>
+                    <img class="no-borders" src="./img/ipython.png">
+                        <aside class="notes">
+                            Everyone had his own preferences for the programming language, so some people slowly started moving to Python long time ago, but they still used R for the visualizations.<br>
+                            But at some point Python got the IPython tool, together with the amazing IPython notebooks.<br>
+                            It allowed for super easy visualizations, directly in the browser and it became extremely popular among scientists.<br>
+                            So since last 2 or 3 years I have observed that many scientists moved from R or other "interesting" programming languages to Python and the IPython notebook (now called Jupiter notebook) became a de facto standard for data visualizations.<br>
+
+
                             Even though most people are happy with Python, some of them complain that Python is slow.<br>
                             One of the reasons why Python is slow is because programmers, especially those who come to Python from a different programming language, write non idiomatic code.<br>
                             I don't mean that idiomatic code will give you some orders of magnitude speed improvements.<br>
