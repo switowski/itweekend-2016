@@ -42,8 +42,8 @@
                         <h1>Writing faster code</h1>
                         <aside class="notes">
                             Hi everyone.<br>
-                            I would like to talk with you about writing faster code. I remember the first time I was talking about making code faster - it was during some lightning talks, and I asked the audience what is in their opinion the best way to make Python code faster.<br>
-                            And there was this one guy there - you know this type of an old school programmer that doesn't believe in Agile or TDD - who said "Well, rewrite your code in C".<br>
+                            I would like to talk with you about writing faster code. I remember the first time I was talking about making code faster - it was during some lightning talks, and I asked the audience what is, in their opinion, the best way to make Python code faster.<br>
+                            And there was this one guy there - this type of an old school programmer - who said "Well, rewrite your code in C".<br>
                             And you know what? The guy was absolutely right. Take any piece of Python code, rewrite it in C or C++ and it will probably be faster.<br>
                             I decided that the only way to prevent this kind of mistakes is to have a very clear title of the presentation.<br>
                         </aside>
@@ -105,7 +105,7 @@ write.gif(X, "Mandelbrot.gif", col=jet.colors, delay=900)
                             </code></pre>
                         <aside class="notes">
                             As you can see, R is probably not the most beautiful language<br>
-                            But it's fine. If you want to visualize some data, you write a script, display a plot, paste it in your paper and you are done.<br>
+                            But it's fine. If you want to visualize some data, you write a script, display a plot, copy it to your paper and you are done.<br>
                             Well, it was fine until some people discovered that since they know the basics of R, they can use it to write scripts to manipulate some data or do other tasks.<br>
                         </aside>
                     </section>
@@ -123,7 +123,7 @@ recfibo <- function(n) {
 print.table(lapply(0:20, recfibo))
                         </code></pre>
                         <aside class="notes">
-                            So scientists - people very often with absolutely no background in programming - started writing simple scripts in R.<br>
+                            So scientists - people very often with absolutely no background in programming - started writing scripts in R.<br>
                             And as it happens with all the "temporary scripts" - they were passed down from one generation of scientists to another.<br>
                             So every now and then, someone added a couple lines of code to that script.<br>
                         </aside>
@@ -133,8 +133,7 @@ print.table(lapply(0:20, recfibo))
                         <aside class="notes">
                             And suddenly small scripts became big scripts.<br>
                             It's like those Perl scripts for some administrative tasks that are stored in the miscellaneous folder and no one has any idea who wrote them in the first place.<br>
-                            If you don't those scripts in a clean, idiomatic way from the beginning, then at some point they are doomed.<br>
-                            As long as they work it's fine, but when if something breaks, you usually need to rewrite it.<br>
+                            As long as they work it's fine, but when something breaks, you usually need to rewrite it.<br>
                             So scientists started to look for alternatives - an easy to use language that provides simple tools for data analysis, but can also be used for any other tasks.<br>
                             And for many years there was no easy replacement.
                         </aside>
