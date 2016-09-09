@@ -43,8 +43,8 @@
                         <aside class="notes">
                             Hi everyone.<br>
                             I would like to talk with you about writing faster code. I remember the first time I was talking about making code faster - it was during some lightning talks, and I asked the audience what is, in their opinion, the best way to make Python code faster.<br>
-                            And there was this one guy there - this type of an old school programmer - who said "Well, rewrite your code in C".<br>
-                            And you know what? The guy was absolutely right. Take any piece of Python code, rewrite it in C or C++ and it will probably be faster.<br>
+                            The first answer I got was "Rewrite your code in C".<br>
+                            Well, that's technically correct. Take any piece of Python code, rewrite it in C or C++ and it will probably be faster.<br>
                             I decided that the only way to prevent this kind of mistakes is to have a very clear title of the presentation.<br>
                         </aside>
                     </section>
@@ -106,7 +106,7 @@ write.gif(X, "Mandelbrot.gif", col=jet.colors, delay=900)
                         <aside class="notes">
                             As you can see, R is probably not the most beautiful language<br>
                             But it's fine. If you want to visualize some data, you write a script, display a plot, copy it to your paper and you are done.<br>
-                            Well, it was fine until some people discovered that since they know the basics of R, they can use it to write scripts to manipulate some data or do other tasks.<br>
+                            Well, it was fine, until people discovered that since they know the basics of R, they can use it to write scripts to manipulate some data or do some other tasks.<br>
                         </aside>
                     </section>
                     <section>
@@ -132,8 +132,8 @@ print.table(lapply(0:20, recfibo))
                         <h1>...will grow</h1>
                         <aside class="notes">
                             And suddenly small scripts became big scripts.<br>
-                            It's like those Perl scripts for some administrative tasks that are stored in the miscellaneous folder and no one has any idea who wrote them in the first place.<br>
-                            As long as they work it's fine, but when something breaks, you usually need to rewrite it.<br>
+                            It's like those Perl scripts for administrative tasks that are stored on a server and no one has any idea who wrote them in the first place.<br>
+                            As long as they work it's fine, but when something breaks, you spend hours trying to fix the smallest bugs.<br>
                             So scientists started to look for alternatives - an easy to use language that provides simple tools for data analysis, but can also be used for any other tasks.<br>
                             And for many years there was no easy replacement.
                         </aside>
@@ -141,20 +141,10 @@ print.table(lapply(0:20, recfibo))
                     <section>
                     <img class="no-borders" src="./img/ipython.png">
                         <aside class="notes">
-                            Everyone had his own preferences for the programming language, so some people slowly started moving to Python long time ago, but they still used R for the visualizations.<br>
+                            Some people moved to Python, but they were still using R for the visualizations.<br>
                             But at some point Python got the IPython tool, together with the amazing IPython notebooks.<br>
                             It allowed for super easy visualizations, directly in the browser and it became extremely popular among scientists.<br>
-                            So since last 2 or 3 years I have observed that many scientists moved from R or other "interesting" programming languages to Python and the IPython notebook (now called Jupiter notebook) became a de facto standard for data visualizations.<br>
-
-
-                            Even though most people are happy with Python, some of them complain that Python is slow.<br>
-                            One of the reasons why Python is slow is because programmers, especially those who come to Python from a different programming language, write non idiomatic code.<br>
-                            I don't mean that idiomatic code will give you some orders of magnitude speed improvements.<br>
-                            No, still, non-idiomatic C code will probably be faster than idiomatic Python code.<br>
-                            But that's not the reason why people decide to use Python.
-                            <!-- But that's now the point. Companies use Python for a reason.<br> -->
-                            <!-- For example, in my team we do a lot of web development and due to the nature of CERN, we have many people coming for short periods of time (few months to 1-2 years).<br> -->
-                            <!-- Sure, we could go for some sophisticated web framework, but if we want to enable people to quickly start writing an easy to maintain code, Python was the best choice-->
+                            So since couple of years, I observe that many scientists moved from R or other "interesting" languages to Python and the IPython notebook - now Jupiter notebook - became a de facto standard for data visualizations.
                         </aside>
                     </section>
                 </section>
@@ -163,7 +153,8 @@ print.table(lapply(0:20, recfibo))
                         <h4>Python was not made to be fast...</h4>
                         <h4>...but to make developers fast.</h4>
                         <aside class="notes">
-                            Python was not created to be a fast language and it's definitely not used for the LHC where every nanosecond of delay means that scientists will lose data.<br>
+                            Even though most people are happy with Python, some of them complain that Python is slow.<br>
+                            Well, Python was not created to be a fast language and it's definitely not recommended for some computations where every nanosecond counts.<br>
                             And that's fine with me. There are many other areas where Python can be used.<br>
                         </aside>
                     </section>
@@ -182,8 +173,8 @@ print.table(lapply(0:20, recfibo))
                         </div>
                         <aside class="notes">
                             For example, in our team we do a lot of web development and due to the nature of CERN, most of the people are coming for short periods of time (from a few months to 1 or 2 years).<br>
-                            That's one of the reasons why we decided to go for Python - even people with little to no knowledge of Python were able to quickly start using it and contribute to the projects.<br>
-                            More importantly, the code that was created was easy to maintain in the future.<br>
+                            Because we decided to use Python - even people that didn't know it before can quickly start using it and contribute to the projects.<br>
+                            More important, the code that is created is easy to maintain in the future.<br>
                         </aside>
                     </section>
                     <section>
@@ -200,8 +191,8 @@ public class HelloWorld {
 print("Hello, world!")
                         </code></pre>
                         <aside class="notes">
-                            It's very easy to read and write code in Python, which makes it a perfect language to learn program.
-                            I mean, imagine you are completely new to programming and someone tells you: "Hey, let me show you how much fun is the programming. Let's start with something super simple and write some text to the screen."<br>
+                            Since Python code is very easy to read and write, it makes it a perfect language to learn programming.
+                            I mean, imagine you have never touched code in your life and someone tells you: "Hey, let me show you how much fun is the programming. Let's start with something super simple and write some text to the screen."<br>
                             And then he shows you one of those examples.<br>
                             I mean, one of them is clearly not something that you would show to a beginner to encourage him or her to start programming.
                         </aside>
@@ -222,7 +213,7 @@ print("Hello, world!")
                         <h1 class='h1-smaller'>OPTIMIZATION</h1>
                         <aside class="notes">
                             So Python is usually fast enough. But what if we decide it's not fast enough anymore.<br>
-                            For example, your website starts giving timeouts to your users or maybe a faster code will bring more money for your company.<br>
+                            For example, you get timeouts on your website or maybe a faster code will bring more money to your company.<br>
                             It's time for optimization!
                         </aside>
                     </section>
@@ -243,6 +234,7 @@ print("Hello, world!")
                         </aside>
                     </section>
                     <section>
+                        <h2>Rules of optimization:</h2>
                         <h3>1. Don't</h3>
                         <h3 class="fragment">2. Don't...&nbsp;yet</h3>
                         <ul class="fragment current-visible remove" style="padding-left:325px;">
@@ -264,8 +256,7 @@ print("Hello, world!")
                             You might think it would be nice to optimize your code a bit, but first of all, you will waste time doing something that is probably not needed.<br>
                             If you want your code to run faster, you can start with getting faster hardware in the first place.<br>
                             Second of all, optimization comes with a cost. Most often the only cost is the time you spend optimizing the existing code.<br>
-                            Sometimes, it's also the time needed to fix what you just broke with your optimization.<br>
-                            But also, the optimized code might not be as readable as it was in the first place.<br>
+                            But the optimized code might not be as readable as it was in the first place.<br>
                             And maybe your code is now running faster but it uses more memory ?<br>
                             So unless you have really good reasons to optimize - don't do this.<br>
                             If you know that you really need to optimize, then you can move to the second rule of optimization<br>
@@ -284,16 +275,42 @@ print("Hello, world!")
                             I have no idea, because I had nothing to compare it to! If I had written the whole function first and then improve it, I could measure it and see if it's now better or worse, but otherwise I can only guess.<br>
                             And that brings me to the last rules of optimization - Don't guess.<br>
                             ###CLICK###<br>
-                            Always profile your code before optimization. Human are terrible in predicting bottlenecks of the code.<br>
+                            Always profile your code before optimization. Humans are terrible in predicting bottlenecks of the code.<br>
                             If your code is slow - profile it and see what takes most of the time.<br>
                             Otherwise, you might end up spending time to rewrite part of your code just to make it 1% faster, while there are other parts of the system where you can gain much more improvements with less effort.<br>
-                            ###CLICK###<br>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>cProfile</h4>
+                        <img class="no-borders" src="./img/cProfile.png">
+                        <aside class="notes">
                             There are plenty of profiling tools.<br>
-                            There are a few talks about profiling that you can check, so I will not go into details here.<br>
                             If you don't know where to start, you can try the built-in Python profiler called cProfile.<br>
-                            It will show you a clear overview of how many times each function is called and where your code is spending most of the time.<br>
-                            You can combine it with the pstats module, which allows for more advanced formatting of the results.<br>
-                            If you prefer a graphical interface, you can take a look at libraries like RunSnakeRun and SnakeViz.
+                            It will show you an overview of how many times each function is called and where your code is spending most of the time.<br>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>pstats</h4>
+                        <img class="no-borders" src="./img/pstats.png">
+                        <aside class="notes">
+                            However, if you are looking for bottlenecks, you might want to format the results to see problems better.<br>
+                            For example, maybe you want to see 10 most time-consuming functions or find which functions are called most often.<br>
+                            For this, you can the pstats module.<br>
+                            You save the results of the cProfile call in a file, then load them with pstats and now you can format the results however you like.<br>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>RunSnakeRun</h4>
+                        <img class="no-borders" src="./img/runsnakerun.png">
+                        <aside class="notes">
+                            If you prefer a graphical interface, you can check the libraries like RunSnakeRun and SnakeViz.
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>SnakeViz</h4>
+                        <img class="no-borders" src="./img/snakeviz.png">
+                        <aside class="notes">
+                            or SnakeViz.
                         </aside>
                     </section>
                 </section>
