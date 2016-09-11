@@ -280,10 +280,59 @@ print("Hello, world!")
                             Otherwise, you might end up spending time to rewrite part of your code just to make it 1% faster, while there are other parts of the system where you can gain much more improvements with less effort.<br>
                         </aside>
                     </section>
+                </section>
+                <!-- Optimization is not only the speed -->
+                <section>
+                    <section>
+                        <h4>Optimization is all about the speed</h4>
+                        <div class="fragment">
+                            <h4>... and memory</h4>
+                        </div>
+                        <div class="fragment">
+                            <h4>... and disk space</h4>
+                            <h4>... disk I/O</h4>
+                            <h4>... network I/O</h4>
+                            <h4>... power consumption</h4>
+                            <h4>... and more.</h4>
+                        </div>
+                        <aside class="notes">
+                            Before we move on, let's make it clear what does it mean that the code was optimized.<br>
+                            Optimized code is a code that will run faster than before, right?<br>
+                            ###CLICK###<br>
+                            And also use less memory.<br>
+                            ###CLICK###<br>
+                            And basically less of everything.<br>
+                            The bad news is - you can't have all of this.<br>
+                            Optimization in one area will usually cause deterioration in other areas.<br>
+                            You always have to decide, which resources are crucial to you and try to optimize in that direction.<br>
+                            So it's possible that optimization will have nothing to do with the execution time at all, as there can be other resources more important than the raw speed.<br>
+                            For example, who cares if your program is now 10 times faster if it's crashing half of the time, because it's running out of memory ?
+                        </aside>
+                    </section>
+                    <section data-background="#f7f3de">
+                        <div class="blockquote">
+                            <blockquote>
+                                <p>Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live</p>
+                            </blockquote>
+                            <div class="blockquote-attribution">
+                                <p class="blockquote-author">
+                                    John Woods
+                                </p>
+                            </div>
+                        </div>
+                        <aside class="notes">
+                            Another important resource that people often forget, especially during the optimization is the sanity.<br>
+                            Sanity of a person, who will be maintaining your code. So please, be nice to that person, you never know who that might be.<br>
+                            Unless you are really writing a throw-away code, if you are making the code harder to read and maintain, then you are probably doing it wrong!
+                        </aside>
+                    </section>
+                </section>
+                <section>
                     <section>
                         <h4>cProfile</h4>
                         <img class="no-borders" src="./img/cProfile.png">
                         <aside class="notes">
+                            So, we know what we want to optimize and the third rule of optimization says that you should profile your code first, so how can we do this?<br>
                             There are plenty of profiling tools.<br>
                             If you don't know where to start, you can try the built-in Python profiler called cProfile.<br>
                             It will show you an overview of how many times each function is called and where your code is spending most of the time.<br>
@@ -303,14 +352,68 @@ print("Hello, world!")
                         <h4>RunSnakeRun</h4>
                         <img class="no-borders" src="./img/runsnakerun.png">
                         <aside class="notes">
-                            If you prefer a graphical interface, you can check the libraries like RunSnakeRun and SnakeViz.
+                            If you prefer a graphical interface, you can check the libraries like RunSnakeRun and SnakeViz.<br>
+                            In RunSnakeRun, you can see a nice visualization of how much time each function takes.<br>
+                            You also get the table with the same information as in cProfile, so how many times each function was called, what was the cumulative time, etc.<br>
+                            Unfortunately, it's no longer updated since 2013 and it doesn't support Python 3.
                         </aside>
                     </section>
                     <section>
                         <h4>SnakeViz</h4>
                         <img class="no-borders" src="./img/snakeviz.png">
                         <aside class="notes">
-                            or SnakeViz.
+                            Another graphical profiler that actually works with both Python 2 and Python 3 is SnakeViz.<br>
+                            SnakeViz was inspired by the RunSnakeRun, so the display looks quite similar.<br>
+                            You can also see which functions takes the most of the time, ...
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>SnakeViz</h4>
+                        <img class="no-borders" src="./img/snakeviz2.png">
+                        <aside class="notes">
+                            ...and when you hover over any part of the chart, you can see detailed information about this function.
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>memory_profiler</h4>
+                        <small class="source-link"><a href="https://pypi.python.org/pypi/memory_profiler">https://pypi.python.org/pypi/memory_profiler</a></small>
+                        <pre><code class="nohighlight" data-trim data-noescape>
+$ pip install -U memory_profiler
+                        </code></pre>
+                        <pre><code class='python' data-trim data-noescape>
+@profile
+def my_func():
+    a = [1] * (10 ** 6)
+    b = [2] * (2 * 10 ** 7)
+    del b
+    return a
+                        </code></pre>
+                        <aside class="notes">
+                            Ok, so these profilers will be handy when you want your programs to run faster.<br>
+                            But what if you have memory leaks?<br>
+                            Python has a garbage collector, but it's still possible to have memory leaks or simply use too much memory, so your program crashes.<br>
+                            For memory profiling we have a package called memory_profiler.<br>
+                            You can install it with pip or easy_install command and then you can use the @profile decorator to specify which functions you want to profile.<br>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>memory_profiler</h4>
+                        <img class="no-borders" src="./img/memory_profiler.png">
+                        <aside class="notes">
+                            When you run your code with python -m memory_profiler and a file name, it will return you a table with line by line comparison or how much memory is used at that moment.<br>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>memory_profiler</h4>
+                        <pre><code class="nohighlight" data-trim data-noescape>
+mprof run example.py
+mprof plot
+                        </code></pre>
+                        <img class="no-borders" src="./img/mprof.png">
+                        <small class="source-link"><a href="https://www.huyng.com/posts/python-performance-analysis">https://www.huyng.com/posts/python-performance-analysis</a></small>
+                        <aside class="notes">
+                            memory_profiler will also install the mprof executable that we can use to display a plot of used memory.<br>
+                            If you want to read more about using memory_profiler but also other tools for memory profiling, there is a nice blog post that you can check.
                         </aside>
                     </section>
                 </section>
@@ -322,7 +425,8 @@ print("Hello, world!")
                             <li class="fragment">Algorithms and data structures</li>
                         </ul>
                         <aside class="notes">
-                            Once we are ready for optimization, we have to decide, on which area we want to focus.<br>
+                            Ok, so we know what type of resource we want to optimize and we know where is the bottleneck.<br>
+                            Now, how do we fix it ?<br>
                             There are different levels of optimization:<br>
                             ###CLICK###<br>
                             Starting from the highest level, you have the design level optimization. Depending on the constrains and priorities of your system, you can optimize it by redesigning it. It might require rewriting parts or the whole application in a different programming language, changing the type of a database or redesigning the architecture of your software to limit the number of DB queries.<br>
@@ -382,58 +486,13 @@ print N * (1 + N) / 2
                         </aside>
                     </section>
                 </section>
-                <!-- Optimization is not only the speed -->
-                <section>
-                    <section>
-                        <h4>Optimization is all about the speed</h4>
-                        <div class="fragment">
-                            <h4>... and memory</h4>
-                        </div>
-                        <div class="fragment">
-                            <h4>... and disk space</h4>
-                            <h4>... disk I/O</h4>
-                            <h4>... network I/O</h4>
-                            <h4>... power consumption</h4>
-                            <h4>... and more.</h4>
-                        </div>
-                        <aside class="notes">
-                            So, when you optimize you probably want your code to run faster.<br>
-                            ###CLICK###<br>
-                            And also use less memory.<br>
-                            ###CLICK###<br>
-                            And basically less of everything.<br>
-                            The bad news is - you can't have all of this.<br>
-                            Optimization in one area will usually cause deterioration in other areas.<br>
-                            You always have to decide, which resources are crucial to you and try to optimize in that direction.<br>
-                            So it's possible that optimization will have nothing to do with the execution time at all, as there can be other resources more important than the raw speed.<br>
-                            For example, who cares if your program is now 10 times faster if it's crashing half of the time, because it's running out of memory ?
-                        </aside>
-                    </section>
-                    <section data-background="#f7f3de">
-                        <div class="blockquote">
-                            <blockquote>
-                                <p>Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live</p>
-                            </blockquote>
-                            <div class="blockquote-attribution">
-                                <p class="blockquote-author">
-                                    John Woods
-                                </p>
-                            </div>
-                        </div>
-                        <aside class="notes">
-                            Another important resource of optimization that people are often forgetting is the sanity.<br>
-                            Sanity of a person, who will be maintaining your code. So please, be nice to that person, you never know who that might be.<br>
-                            Unless you are really writing a throw-away code, if you are making the code harder to read and maintain, then you are probably doing it wrong!
-                        </aside>
-                    </section>
-                </section>
                 <!-- SOURCE CODE OPTIMIZATION -->
                 <section>
                     <section>
                         <h2>Writing fast Python</h2>
                         <h5>a.k.a source code optimization</h5>
                         <aside class="notes">
-                            Having those things cleared, let's jump straight to how you can write faster Python, also known as source code optimization.<br>
+                            Ok, now we know everything about optimization, so let's jump straight to how you can write faster Python, also known as source code optimization.<br>
                         </aside>
                     </section>
                     <section>
@@ -503,9 +562,35 @@ print len(ONE_MILLION_ELEMENTS)
                 </section>
 
 
+                <!-- Summing elements in a list - numpy -->
+                <section>
+                <h4 class="mb50"><span class="orange">#2</span> Sum elements in a list</h4>
+                    <pre><code class='python' data-trim data-noescape>
+sum(ONE_MILLION_ELEMENTS)
+                    </code></pre>
+                    <p>
+                        <span class="bad">15.3 ms</span>
+                    </p>
+                    <pre><code class='python' data-trim data-noescape>
+# ONE_MILLION_ELEMENTS is a numpy.array
+numpy.sum(ONE_MILLION_ELEMENTS)
+                    </code></pre>
+                    <p>
+                        <span class="good">630 µs</span>
+                    </p>
+                    <p>
+                        <span class="good">24</span> times faster
+                    </p>
+                    <aside class="notes">
+                        Also, if you know that you will be dealing only with numbers, you can use the numpy.<br>
+                        It's data structures and functions and designed to be more efficient in mathematical operations, so they will be usually faster and also more memory-efficient.<br>
+                    </aside>
+                </section>
+
+
                 <!-- Filter a list -->
                 <section>
-                <h4 class="mb50"><span class="orange">#2</span> Filter a list</h4>
+                <h4 class="mb50"><span class="orange">#3</span> Filter a list</h4>
                     <pre><code class='python' data-trim data-noescape>
 output = []
 for element in MILLION_NUMBERS:
@@ -593,7 +678,7 @@ for i, element in enumerate(MILLION):
                 <!-- Ask for permissions vs beg for forgiveness -->
                 <section>
                     <section>
-                        <h4 class="mb50"><span class="orange">#3</span> Permissions or forgiveness ?</h4>
+                        <h4 class="mb50"><span class="orange">#4</span> Permissions or forgiveness ?</h4>
                         <pre><code class='python' data-trim data-noescape>
 class Foo(object):
     hello = 'world'
@@ -627,7 +712,7 @@ except AttributeError:
                         </aside>
                     </section>
                     <section>
-                    <h4 class="mb50"><span class="orange">#3</span> Permissions or forgiveness ?</h4>
+                    <h4 class="mb50"><span class="orange">#4</span> Permissions or forgiveness ?</h4>
                         <pre><code class='python' data-trim data-noescape>
 if (hasattr(foo, 'foo') and hasattr(foo, 'bar')
     and hasattr(foo, 'baz')):
@@ -660,7 +745,7 @@ except AttributeError:
                     </section>
                     <!-- Ask for permissions vs beg for forgiveness 3 -->
                     <section>
-                    <h4 class="mb50"><span class="orange">#3</span> Permissions or forgiveness ?</h4>
+                    <h4 class="mb50"><span class="orange">#4</span> Permissions or forgiveness ?</h4>
                         <pre><code class='python' data-trim data-noescape>
 class Bar(object):
     pass
@@ -701,7 +786,7 @@ except AttributeError:
                 <!-- Check list membership -->
                 <section>
                     <section>
-                        <h4 class="mb50"><span class="orange">#4</span> Membership testing</h4>
+                        <h4 class="mb50"><span class="orange">#5</span> Membership testing</h4>
                         <pre><code class='python' data-trim data-noescape>
 def check_number(number):
     for item in MILLION_NUMBERS:
@@ -736,7 +821,7 @@ def check_number(number):
                         </aside>
                     </section>
                     <section>
-                        <h4 class="mb50"><span class="orange">#4</span> Membership testing</h4>
+                        <h4 class="mb50"><span class="orange">#5</span> Membership testing</h4>
                         <pre><code class='python' data-trim data-noescape>
 100 in MILLION_NUMBERS
                         </code></pre>
@@ -759,7 +844,7 @@ def check_number(number):
                         </aside>
                     </section>
                     <section>
-                        <h4 class="mb50"><span class="orange">#4</span> Membership testing</h4>
+                        <h4 class="mb50"><span class="orange">#5</span> Membership testing</h4>
                         <pre><code class='python' data-trim data-noescape>
 MILLION_SET = set(MILLION_NUMBERS)
 %timeit 100 in MILLION_SET
@@ -799,7 +884,7 @@ MILLION_SET = set(MILLION_NUMBERS)
 
                 <!-- Removing duplicates -->
                 <section>
-                    <h4 class="mb50"><span class="orange">#5</span> Remove duplicates</h4>
+                    <h4 class="mb50"><span class="orange">#6</span> Remove duplicates</h4>
                     <pre><code class='python' data-trim data-noescape>
 unique = []
 for element in MILLION_ELEMENTS:
@@ -829,7 +914,7 @@ set(MILLION_ELEMENTS)
 
                 <!-- List sorting is faster in place -->
                 <section>
-                    <h4 class="mb50"><span class="orange">#6</span> List sorting</h4>
+                    <h4 class="mb50"><span class="orange">#7</span> List sorting</h4>
                     <pre><code class='python' data-trim data-noescape>
 sorted(MILLION_RANDOM_NUMBERS)
                     </code></pre>
@@ -852,7 +937,7 @@ MILLION_RANDOM_NUMBERS.sort()
 
                 <!-- Execute operation 1000 times in a function than a function 1000 times -->
                 <section>
-                    <h4 class="mb50"><span class="orange">#7</span> 1000 operations and 1 function</h4>
+                    <h4 class="mb50"><span class="orange">#8</span> 1000 operations and 1 function</h4>
                     <pre><code class='python' data-trim data-noescape>
 def square(number):
     return number**2
@@ -867,7 +952,7 @@ def compute_squares():
                     </code></pre>
                     <p>
                         <span class="good">314 µs</span><br>
-                         27% faster
+                        27% faster
                     </p>
                     <aside class="notes">
                         If you want to perform the same operation on a large set of data, you have two options.<br>
@@ -883,7 +968,7 @@ def compute_squares():
                 <!-- Checking for True -->
                 <section>
                     <section>
-                        <h4 class="mb50"><span class="orange">#8</span> Checking for True</h4>
+                        <h4 class="mb50"><span class="orange">#9</span> Checking for True</h4>
                         <pre><code class='python' data-trim data-noescape>
 if variable == True:
                         </code></pre>
@@ -914,7 +999,7 @@ if variable:
                     </section>
                     <!-- Checking for False -->
                     <section>
-                        <h4 class="mb50"><span class="orange">#8</span> Checking for False</h4>
+                        <h4 class="mb50"><span class="orange">#9.1</span> Checking for False</h4>
                         <pre><code class='python' data-trim data-noescape>
 if variable == False:
                         </code></pre>
@@ -942,7 +1027,7 @@ if not variable:
                     </section>
                     <!-- Checking for empty list -->
                     <section>
-                        <h4 class="mb50"><span class="orange">#8</span> Checking for empty list</h4>
+                        <h4 class="mb50"><span class="orange">#9.2</span> Checking for empty list</h4>
                         <pre><code class='python' data-trim data-noescape>
 if len(a_list) == 0:
                         </code></pre>
@@ -973,7 +1058,7 @@ if not a_list:
                 <!-- Lambda vs def -->
                 <section>
                     <section>
-                    <h4><span class="orange">#9</span> Def vs lambda</h4>
+                    <h4><span class="orange">#10</span> Def vs lambda</h4>
                         <pre><code class='python' data-trim data-noescape>
 def greet(name):
     return 'Hello {}!'.format(name)
@@ -997,7 +1082,7 @@ greet = lambda name: 'Hello {}!'.format(name)
                         </aside>
                     </section>
                     <section>
-                    <h4><span class="orange">#9</span> Def vs lambda</h4>
+                    <h4><span class="orange">#10</span> Def vs lambda</h4>
                         <pre><code class='python' data-trim data-noescape>
 >>> dis.dis(greet)
  0 LOAD_CONST    1 ('Hello {}!')
@@ -1022,7 +1107,7 @@ greet = lambda name: 'Hello {}!'.format(name)
                 <!-- [] vs list() and {} vs dict() -->
                 <section>
                     <section>
-                        <h4><span class="orange">#10</span> list() or []</h4>
+                        <h4><span class="orange">#11</span> list() or []</h4>
                         <pre><code class='python' data-trim data-noescape>
 list()
                         </code></pre>
@@ -1047,7 +1132,7 @@ list()
                         </aside>
                     </section>
                     <section>
-                        <h4><span class="orange">#10</span> dict() or {}</h4>
+                        <h4><span class="orange">#11.1</span> dict() or {}</h4>
                         <pre><code class='python' data-trim data-noescape>
 dict()
                         </code></pre>
@@ -1080,7 +1165,7 @@ dict()
                     </aside>
                 </section>
                 <section>
-                <h4><span class="orange">#11</span> Variables assignment</h4>
+                <h4><span class="orange">#12</span> Variables assignment</h4>
                     <pre><code class='python' data-trim data-noescape>
 q=1
 w=2
@@ -1113,7 +1198,7 @@ q,w,e,r,t,y,u,i,o,p = 1,2,3,4,5,6,7,8,9,0
                 </section>
                 <!-- Local vs global/built-in variables  -->
                 <section>
-                <h4><span class="orange">#12</span> Variables lookup</h4>
+                <h4><span class="orange">#13</span> Variables lookup</h4>
                     <pre><code class='python' data-trim data-noescape>
 def squares(MILLION_NUMBERS):
     output = []
