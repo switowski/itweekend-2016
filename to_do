@@ -1,5 +1,3 @@
 What to extend:
 
-* Add memory profilers section
-* Add examples of numpy for some mathematical computations - the use of array data structure is way faster
 * Maybe show a quick example of PyPy for some standard code and explanation when PyPy can be faster (for example, it can see that you have a list of integers and optimizes it) ? PyPy won't be faster for like 1-time data moving from one place to another.
