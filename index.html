@@ -124,7 +124,7 @@ print.table(lapply(0:20, recfibo))
                         </code></pre>
                         <aside class="notes">
                             So scientists - people very often with absolutely no background in programming - started writing scripts in R.<br>
-                            And as it happens with all the "temporary scripts" - they were passed down from one generation of scientists to another.<br>
+                            And as it happens with all those "temporary scripts" - they were passed down from one generation of scientists to another.<br>
                             So every now and then, someone added a couple lines of code to that script.<br>
                         </aside>
                     </section>
@@ -134,7 +134,7 @@ print.table(lapply(0:20, recfibo))
                             And suddenly small scripts became big scripts.<br>
                             It's like those Perl scripts for administrative tasks that are stored on a server and no one has any idea who wrote them in the first place.<br>
                             As long as they work it's fine, but when something breaks, you spend hours trying to fix the smallest bugs.<br>
-                            So scientists started to look for alternatives - an easy to use language that provides simple tools for data analysis, but can also be used for any other tasks.<br>
+                            So scientists started to look for an alternative - an easy to use language that provides simple tools for data analysis, but can also be used for any other tasks.<br>
                             And for many years there was no easy replacement.
                         </aside>
                     </section>
@@ -144,7 +144,7 @@ print.table(lapply(0:20, recfibo))
                             Some people moved to Python, but they were still using R for the visualizations.<br>
                             But at some point Python got the IPython tool, together with the amazing IPython notebooks.<br>
                             It allowed for super easy visualizations, directly in the browser and it became extremely popular among scientists.<br>
-                            So since couple of years, I observe that many scientists moved from R or other "interesting" languages to Python and the IPython notebook - now Jupiter notebook - became a de facto standard for data visualizations.
+                            So since couple of years, I observe that many scientists moved from R or other "interesting" languages to Python and the IPython notebook - well, now the Jupiter notebook - became a de facto standard for data visualizations.
                         </aside>
                     </section>
                 </section>
@@ -172,7 +172,7 @@ print.table(lapply(0:20, recfibo))
                             </div>
                         </div>
                         <aside class="notes">
-                            For example, in our team we do a lot of web development and due to the nature of CERN, most of the people are coming for short periods of time (from a few months to 1 or 2 years).<br>
+                            For example, in our team we do a lot of web development and due to the nature of CERN, most of the people are coming for short periods of time - from a few months to 1 or 2 years.<br>
                             Because we decided to use Python - even people that didn't know it before can quickly start using it and contribute to the projects.<br>
                             More important, the code that is created is easy to maintain in the future.<br>
                         </aside>
@@ -191,10 +191,10 @@ public class HelloWorld {
 print("Hello, world!")
                         </code></pre>
                         <aside class="notes">
-                            Since Python code is very easy to read and write, it makes it a perfect language to learn programming.
+                            Since Python code is very easy to read and write, it makes it a perfect language to learn programming.<br>
                             I mean, imagine you have never touched code in your life and someone tells you: "Hey, let me show you how much fun is the programming. Let's start with something super simple and write some text to the screen."<br>
                             And then he shows you one of those examples.<br>
-                            I mean, one of them is clearly not something that you would show to a beginner to encourage him or her to start programming.
+                            I mean, one of them is not something that you would show to a beginner to encourage him or her to start programming.
                         </aside>
                     </section>
                     <section data-background="#f7f3de">
@@ -243,11 +243,6 @@ print("Hello, world!")
                             <li>Now</li>
                         </ul>
                         <h3 class="fragment">3. Profile</h3>
-                        <ul class="fragment" style="padding-left:160px;">
-                            <li>cProfile</li>
-                            <li>pstats</li>
-                            <li>RunSnakeRun, SnakeViz</li>
-                        </ul>
                         <aside class="notes">
                             First rule of optimization: Don't. Ok, that was easy. Thanks for listening, any questions ?<br>
                             Well, actually no, there is more to that.<br>
@@ -305,7 +300,7 @@ print("Hello, world!")
                             The bad news is - you can't have all of this.<br>
                             Optimization in one area will usually cause deterioration in other areas.<br>
                             You always have to decide, which resources are crucial to you and try to optimize in that direction.<br>
-                            So it's possible that optimization will have nothing to do with the execution time at all, as there can be other resources more important than the raw speed.<br>
+                            So it's possible that optimization will have nothing to do with the execution time at all, as there can be other resources more important than speed.<br>
                             For example, who cares if your program is now 10 times faster if it's crashing half of the time, because it's running out of memory ?
                         </aside>
                     </section>
@@ -345,7 +340,7 @@ print("Hello, world!")
                             However, if you are looking for bottlenecks, you might want to format the results to see problems better.<br>
                             For example, maybe you want to see 10 most time-consuming functions or find which functions are called most often.<br>
                             For this, you can the pstats module.<br>
-                            You save the results of the cProfile call in a file, then load them with pstats and now you can format the results however you like.<br>
+                            You save the results of the cProfile call in a file, then you load them with pstats and now you can format the results however you like.<br>
                         </aside>
                     </section>
                     <section>
@@ -354,17 +349,18 @@ print("Hello, world!")
                         <aside class="notes">
                             If you prefer a graphical interface, you can check the libraries like RunSnakeRun and SnakeViz.<br>
                             In RunSnakeRun, you can see a nice visualization of how much time each function takes.<br>
-                            You also get the table with the same information as in cProfile, so how many times each function was called, what was the cumulative time, etc.<br>
-                            Unfortunately, it's no longer updated since 2013 and it doesn't support Python 3.
+                            You also get the table with the same information as in cProfile, so how many times each function was called, what was the total time, etc.<br>
+                            Unfortunately, RunSnakeRun is no longer updated since 2013 and it doesn't support Python 3.
                         </aside>
                     </section>
                     <section>
                         <h4>SnakeViz</h4>
                         <img class="no-borders" src="./img/snakeviz.png">
                         <aside class="notes">
-                            Another graphical profiler that actually works with both Python 2 and Python 3 is SnakeViz.<br>
+                            So instead you can check the SnakeViz that works with both Python 2 and Python 3.<br>
                             SnakeViz was inspired by the RunSnakeRun, so the display looks quite similar.<br>
-                            You can also see which functions takes the most of the time, ...
+                            You can also see which functions takes the most of the time, ...<br>
+                            ###CLICK###
                         </aside>
                     </section>
                     <section>
@@ -391,16 +387,16 @@ def my_func():
                         <aside class="notes">
                             Ok, so these profilers will be handy when you want your programs to run faster.<br>
                             But what if you have memory leaks?<br>
-                            Python has a garbage collector, but it's still possible to have memory leaks or simply use too much memory, so your program crashes.<br>
+                            Python has a garbage collector, but it's still possible to have memory leaks or simply use so much memory that your program will crash.<br>
                             For memory profiling we have a package called memory_profiler.<br>
-                            You can install it with pip or easy_install command and then you can use the @profile decorator to specify which functions you want to profile.<br>
+                            You can install it with pip or easy_install command and then you can use the @profile decorator to specify which functions you want to check.<br>
                         </aside>
                     </section>
                     <section>
                         <h4>memory_profiler</h4>
                         <img class="no-borders" src="./img/memory_profiler.png">
                         <aside class="notes">
-                            When you run your code with python -m memory_profiler and a file name, it will return you a table with line by line comparison or how much memory is used at that moment.<br>
+                            When you run your code with python -m memory_profiler and a file name, it will return you a table with line by line comparison of how much memory is used at that moment.<br>
                         </aside>
                     </section>
                     <section>
@@ -413,7 +409,7 @@ mprof plot
                         <small class="source-link"><a href="https://www.huyng.com/posts/python-performance-analysis">https://www.huyng.com/posts/python-performance-analysis</a></small>
                         <aside class="notes">
                             memory_profiler will also install the mprof executable that we can use to display a plot of used memory.<br>
-                            If you want to read more about using memory_profiler but also other tools for memory profiling, there is a nice blog post that you can check.
+                            If you want to read more about using memory_profiler and other tools for memory profiling, there is a nice blog post that you can check.
                         </aside>
                     </section>
                 </section>
@@ -477,7 +473,7 @@ print N * (1 + N) / 2
                             ###CLICK###<br>
                             Next, the compile level.<br>
                             You can make some optimizations if your programming language is using an Ahead of Time compiler.<br>
-                            Since, I'm talking about the CPython, that doesn't have an Ahead of Time compiler, we skip this part as well.<br>
+                            Since, I'm talking about the CPython, that doesn't have an Ahead of Time compiler, we will skip this part.<br>
                             ###CLICK###<br>
                             Last but not least - runtime level.<br>
                             It's related with a specific compiler you are using.<br>
@@ -492,7 +488,7 @@ print N * (1 + N) / 2
                         <h2>Writing fast Python</h2>
                         <h5>a.k.a source code optimization</h5>
                         <aside class="notes">
-                            Ok, now we know everything about optimization, so let's jump straight to how you can write faster Python, also known as source code optimization.<br>
+                            Ok, now we know everything about the optimization, so let's jump straight to how you can write faster Python, also known as source code optimization.<br>
                         </aside>
                     </section>
                     <section>
@@ -582,8 +578,9 @@ numpy.sum(ONE_MILLION_ELEMENTS)
                         <span class="good">24</span> times faster
                     </p>
                     <aside class="notes">
-                        Also, if you know that you will be dealing only with numbers, you can use the numpy.<br>
-                        Numpy has data structures and functions optimized to be more efficient in mathematical operations, so they will usually be faster and also more memory-efficient.<br>
+                        Also, if you know that you will be dealing only with numbers, you can use numpy.<br>
+                        It has data structures and functions optimized to be more efficient in mathematical operations, so they will usually be faster and also more memory-efficient.<br>
+                        Here, we are using the numpy array structure to hold 1 million numbers and the numpy's version of the sum function and as you can see, it's around 24 times faster.
                     </aside>
                 </section>
 
@@ -629,7 +626,7 @@ list(filter(lambda x: x % 2, MILLION_NUMBERS))
                         Why does this happen ?<br>
                         Well, the fact that filter is now returning an iterator is a clear suggestion that this is a wrong use case for the filter function.<br>
                         ###CLICK###<br>
-                        If we want to get the whole list as a result, the better idea is to use list comprehension.<br>
+                        If we want to get the whole list as a result, a better idea is to use list comprehension.<br>
                         It's around 75% faster than the for loop and - at least for me - it looks very clear.
                     </aside>
                 </section>
@@ -1191,8 +1188,8 @@ q,w,e,r,t,y,u,i,o,p = 1,2,3,4,5,6,7,8,9,0
                     <aside class="notes">
                         So, one thing is variables assignments.<br>
                         If you have a bunch of variables that you need to assign, you can either do this the normal, sequential way or you can go for this crazy parallel assignment.<br>
-                        Indeed, you can gain some speed, but with this speed comes the hate of your colleagues reading this code later.<br>
-                        In my opinion, it's not worth it.
+                        Indeed, you can gain some speed, but your colleagues will hate you for that.<br>
+                        Please, don't do this.
                     </aside>
                 </section>
                 <!-- Local vs global/built-in variables  -->
@@ -1256,7 +1253,7 @@ def squares_faster(MILLION_NUMBERS):
                 <section>
                     <h1>Thank you!</h1>
                     <h2 class="orange" style='margin-bottom:100px;'>Happy and <span class='fire'>fast</span> coding!</h2>
-                    <small class='source-link source-link--light'>Check the slides at GitHub:<br>
+                    <small class='source-link source-link--light'>Check the slides at:<br>
                     <a href="http://switowski.github.io/itweekend-2016">http://switowski.github.io/itweekend-2016</a></small>
                     <aside class="notes">
                         Thank you for your attention, do you have any questions ?
